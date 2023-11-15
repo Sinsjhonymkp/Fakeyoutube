@@ -338,7 +338,7 @@
    position: relative;
    padding-bottom: 56.25%;
    height: 0;
-   owerflow: hidden;
+   overflow: hidden;
    margin-bottom: 32px;
  }
 
@@ -383,9 +383,10 @@
    letter-spacing: 0.02em;
  }
 
- .video__views {}
+
 
  .video__description {
+  padding-top: 10px;
    color: #292D32;
    font-size: 24px;
    letter-spacing: 0.02em;
@@ -403,8 +404,16 @@
    align-items: center;
 
  }
+ .video__link .star {
+  display: none;
 
- .video__link_active {}
+}
+
+
+.video__link.active .star {
+  display: block;
+
+}
 
  .video__link .video__no-favorite {
    display: block;
