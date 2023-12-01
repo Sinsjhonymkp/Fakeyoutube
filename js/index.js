@@ -231,7 +231,11 @@ const init = () => {
    else if (currentPage === 'favorite.html') {
     fetchFavoriteVideos().then(displayVideo);
   }
- 
+   else if (currentPage === 'search.html') {
+    fetchTrendingVideos().then(displayVideo);
+  
+  }
+
 
 document.body.addEventListener('click', ({target}) => {
   const itemFavorite = target.closest('.favorite');
