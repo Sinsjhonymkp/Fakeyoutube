@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="icon" href="img/play.avif">
+  <script defer src="js/search.js"></script>
   <script defer src="js/index.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,22 +35,22 @@
           <section class="search">
             <div class="container">
               <form  class="search__form">
-                
-                  <input type="search" class="search__input" placeholder="Найти видео...">
-                  <button class="search__btn" type="submit">
-                    <span>поиск</span>
-                    <svg class="search__icon">
-                      <use xlink:href="img/sprite.svg#search"></use>
-                    </svg>
-                  </button>
-              
-              </form>
+            
+                <input autocomplete="off"  id="elastic" type="search" class="search__input" name="q" placeholder="Найти видео...">
+                <button class="search__btn"  type="submit">
+                  <span>поиск</span>
+                  <svg class="search__icon">
+                    <use xlink:href="img/sprite.svg#search"></use>
+                  </svg>
+                </button>
+            
+            </form>
             </div>
           </section>
           <section class="video-list">
             <div class="container">
               <h2 class="video-list__title">В тренде</h2>
-              <ul class="video-list__items">
+              <ul class="video-list__items elastic">
                 <li class="video-list__item">
                   <article class="video-card">
                     <a href="video.html" class="video-card__link">
@@ -161,10 +162,9 @@
         <div class="footer__authors">
           <ul class="footer__developers-list">
             <li class="footer__developers-item">
-              Designer: <a class="footer__developers-link" target="_blank" href="https://t.me/Marshmallowww"
-                rel="noopener">Anastasia Ilina</a>
+             Контакты:
             </li>
-            <li class="footer__developers-item"> Developer: <a href="https://github.com/Sinsjhonymkp">Anton Karpov</a>
+            <li class="footer__developers-item"> Developer: <a href="3dsite_animationBullshit/resume.html" target="_blank">Anton Karpov</a>
             </li>
   
           </ul>

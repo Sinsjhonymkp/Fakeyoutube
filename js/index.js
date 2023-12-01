@@ -8,8 +8,6 @@ console.log(favoriteIds)
 
 const videoListItems = document.querySelector(".video-list__items");
 
-const search = document.querySelector(".search__form");
-
 const convertISOToReadleDuration =(isoDuration) => {
 
   const hoursMatch = isoDuration.match(/(\d+)H/)
@@ -49,8 +47,8 @@ const fetchTrendingVideos = async () =>{
         const url = new URL(VIDEOS_URL);
         url.searchParams.append('part', 'contentDetails,id,snippet');
         url.searchParams.append('chart', 'mostPopular');
-        url.searchParams.append('regionCode', 'RU');
-        url.searchParams.append('maxResults', '12');
+        url.searchParams.append('regionCode', 'US');
+        url.searchParams.append('maxResults', '50');
         url.searchParams.append('key', API_KEY);
         const response = await fetch(url);
 
@@ -179,7 +177,42 @@ const displayOneVideo = ({items: [video]}) => {
   </div>
 </div>`;
 
-}
+};
+
+
+
+const searchVideo = (searching) => {
+
+  search.textContent = `${search}`;
+ 
+ const listVideos = videos.items.map((video) => {
+  const li = document.createElement('li');
+  li.classList.add('video-list__item');
+  console.log(video)
+  
+  li.innerHTML = `<article class="video-card">
+  <a href="video.html?id=${video.id}" class="video-card__link">
+    <img src="${video.snippet.thumbnails.standart?.url || 
+      video.snippet.thumbnails.high?.url
+   }" alt="Превью видео ${video.snippet.title}" class="video-card__thubnail">
+    <h3 class="video-card__title">${video.snippet.title}</h3>
+    <p class="video-card__chanel">${video.snippet.channelTitle} </p>
+    <p class="video-card__duration">${convertISOToReadleDuration(video.contentDetails.duration)}</p>
+  </a>
+  <button class="video-card__favorite favorite ${favoriteIds.includes(video.id) ? "active" : ""}" type="button" aria-label="Добавить в избранное, ${video.snippet.title}"
+  data-video-id=${video.id}>
+    <svg class="video-card__icon">
+      <use class="star" xlink:href="img/sprite.svg#star"></use>
+      <use class="star-o" xlink:href="img/sprite.svg#star-ow"></use>
+    </svg>
+  </button>
+</article>
+`;
+return li;
+ });
+
+videoListItems.append(...listVideos);  
+};
 
 const init = () => {
   const currentPage = location.pathname.split('/').pop();
@@ -187,7 +220,6 @@ const init = () => {
 
   const urlSearchParams = new URLSearchParams(location.search);
   const videoId = urlSearchParams.get('id');
-  const searchQuery = urlSearchParams.get('q');
 
   if (currentPage == "index.html" || currentPage === ''){
     fetchTrendingVideos().then(displayVideo);
@@ -199,10 +231,7 @@ const init = () => {
    else if (currentPage === 'favorite.html') {
     fetchFavoriteVideos().then(displayVideo);
   }
-   else if (currentPage === 'search.html' && searchQuery) {
-    console.log(currentPage);
-  }
-
+ 
 
 document.body.addEventListener('click', ({target}) => {
   const itemFavorite = target.closest('.favorite');
@@ -223,3 +252,6 @@ document.body.addEventListener('click', ({target}) => {
 });
 };
 init();
+
+
+
