@@ -2,11 +2,11 @@ const API_KEY = "AIzaSyAYyQ2blvvUktM_joWXvcZ8ej34emXBwVE";
 const VIDEOS_URL = "https://www.googleapis.com/youtube/v3/videos";
 const SEARCH_URL = "https://www.googleapis.com/youtube/v3/search";
 
-
 const favoriteIds = JSON.parse(localStorage.getItem('favoriteYT')|| "[]" );
 console.log(favoriteIds)
 
 const videoListItems = document.querySelector(".video-list__items");
+
 
 const convertISOToReadleDuration =(isoDuration) => {
 
